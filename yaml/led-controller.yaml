@@ -1,4 +1,4 @@
-# Phillips Brothers LED Controller v1.0
+# Phillips Brothers LED Controller v1.1
 # ESP32-S3-Zero based LED strip controller for Home Assistant
 # 9 button inputs via ESPHome
 substitutions:
@@ -10,7 +10,7 @@ esphome:
   friendly_name: ${friendly_name}
   project:
     name: "Phillips Brothers.LED Controller"
-    version: "1.0"
+    version: "1.1"
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -18,13 +18,19 @@ esp32:
   framework:
     type: esp-idf
 
+# ESP32-S3FH4R2 has 2MB of in-package quad PSRAM.
+# Gives the BLE proxy headroom for concurrent connections.
+psram:
+  mode: quad
+  speed: 80MHz
+
 logger:
-  level: DEBUG
+  level: WARNING
 
 api:
- encryption:
-  key: !secret api_encryption_key
- reboot_timeout: 0s
+  encryption:
+    key: !secret api_encryption_key
+  reboot_timeout: 0s
 
 ota:
   - platform: esphome
@@ -33,16 +39,36 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
-  fast_connect: true
   min_auth_mode: WPA2
+  # Fallback hotspot so the device stays reachable if the
+  # configured network changes or goes away. Avoids a USB reflash.
+  ap:
+    ssid: "LED Controller Setup"
+    password: !secret ap_password
+
+captive_portal:
+
+web_server:
+  port: 80
+  version: 3
 
 bluetooth_proxy:
   active: true
+
+button:
+  - platform: restart
+    name: "Restart"
+    entity_category: config
 
 sensor:
   - platform: internal_temperature
     name: "ESP32 Temperature"
     update_interval: 60s
+
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    update_interval: 60s
+    entity_category: diagnostic
 
 binary_sensor:
   - platform: gpio

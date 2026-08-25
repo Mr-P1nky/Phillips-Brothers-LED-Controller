@@ -52,9 +52,16 @@ api_encryption_key: "your_key_here"
 ota_password: "your_password_here"
 wifi_ssid: "your_ssid"
 wifi_password: "your_password"
+ap_password: "fallback_hotspot_password"
 ```
 3. Flash via USB on first install, OTA thereafter.
-4. Note: `fast_connect: true` must not be used alongside `manual_ip` on this board — use DHCP with a router-side IP reservation instead.
+4. Use DHCP with a router-side IP reservation rather than `manual_ip` on this board.
+
+### Recovery and diagnostics
+
+- If the configured WiFi network is unreachable, the device starts a fallback hotspot (`LED Controller Setup`) with a captive portal, so credentials can be corrected without a USB reflash.
+- A web UI is served on port 80 at the device IP, exposing all entities and a restart control.
+- `WiFi Signal` and `ESP32 Temperature` sensors are available for diagnosing connectivity faults, since all button logic lives remotely in Node-RED.
 
 ## CAD
 
