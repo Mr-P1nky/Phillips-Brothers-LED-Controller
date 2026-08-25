@@ -12,7 +12,7 @@ The ESP32-S3-Zero also acts as a Bluetooth proxy for Home Assistant, providing B
 
 | Title | Description | Qty | Affiliate Link |
 |-------|-------------|-----|----------------|
-| Waveshare ESP32-S3-Zero | ESP32-S3FH4R2 MCU — 4MB flash, 2MB PSRAM, WiFi + BLE 5 | 1 | https://amzn.to/4wIOBa7 <br> https://amzn.to/4wRNUeB <br> https://amzn.to/45HKDnj |
+| Waveshare ESP32-S3-Zero | ESP32-S3FH4R2 MCU — 4MB flash, 2MB PSRAM, WiFi + BLE 5 | 1 | https://amzn.to/4wRNUeB Waveshare single <br> https://amzn.to/4wIOBa7 Clone single <br>  https://amzn.to/45HKDnj Clone 3 pack|
 | Cherry MX switches | Plate-mount mechanical keyboard switches | 9 | https://amzn.to/4wIDi1H |
 | Zigbee RGBW LED strip | Z2M exposes state, brightness, colour, colour temp and effect | 1 | https://amzn.to/4wKnqeY |
 | Custom PCB | KiCad design, 100x82mm, 4x M3 mounting holes | 1 | See [`gerber/`](gerber/) |
