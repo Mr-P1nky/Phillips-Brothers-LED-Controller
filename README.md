@@ -14,9 +14,8 @@ The ESP32-S3-Zero also acts as a Bluetooth proxy for Home Assistant, providing B
 |-------|-------------|-----|----------------|
 | Waveshare ESP32-S3-Zero | ESP32-S3FH4R2 MCU — 4MB flash, 2MB PSRAM, WiFi + BLE 5 | 1 | _TBC_ |
 | Cherry MX switches | Plate-mount mechanical keyboard switches | 9 | _TBC_ |
-| Keycaps | Spare keycaps to suit | 9 | _TBC_ |
 | Zigbee RGBW LED strip | Z2M exposes state, brightness, colour, colour temp and effect | 1 | _TBC_ |
-| Custom PCB | KiCad design, 100x82mm, 4x M3 mounting holes | 1 | _TBC_ |
+| Custom PCB | KiCad design, 100x82mm, 4x M3 mounting holes | 1 | See [`gerber/`](gerber/) |
 | Panel-mount USB-C connector | Remote 5V input, wired back to the PCB | 1 | _TBC_ |
 
 ## Button Functions
@@ -78,7 +77,7 @@ cad/
 
 ## PCB
 
-Designed in KiCad. Gerbers available in the repo root. Manufactured at 100x82mm, 1.6mm FR4, HASL finish.
+Designed in KiCad. Gerbers in [`gerber/`](gerber/). Manufactured at 100x82mm, 1.6mm FR4, HASL finish.
 
 ## Licence
 
