@@ -10,6 +10,8 @@ The ESP32-S3-Zero also acts as a Bluetooth proxy for Home Assistant, providing B
 
 ## Hardware
 
+> **Affiliate disclosure:** as an Amazon Associate I earn from qualifying purchases.
+
 | Title | Description | Qty | Affiliate Link |
 |-------|-------------|-----|----------------|
 | Waveshare ESP32-S3-Zero | ESP32-S3FH4R2 MCU — 4MB flash, 2MB PSRAM, WiFi + BLE 5 | 1 | https://amzn.to/4wRNUeB Waveshare 2pc <br> https://amzn.to/4wIOBa7 Clone 1pc <br>  https://amzn.to/45HKDnj Clone 3pc|
@@ -81,4 +83,9 @@ Designed in KiCad. Gerbers in [`gerber/`](gerber/). Manufactured at 100x82mm, 1.
 
 ## Licence
 
-MIT
+This project is dual-licensed, because MIT does not properly address hardware:
+
+- **Firmware** (`yaml/`) — [MIT](LICENSE)
+- **Hardware** (`gerber/`, `cad/`) — [CERN-OHL-P v2](LICENSE-HARDWARE), the permissive open hardware licence
+
+Copyright (c) 2026 Phillips Brothers
