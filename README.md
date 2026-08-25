@@ -49,7 +49,7 @@ All button logic lives in [`node-red/flows.json`](node-red/flows.json). Import i
 
 | Placeholder | What it is |
 |-------------|------------|
-| `light.underbed_led_strip` | The Zigbee RGBW strip |
+| `light.led_strip` | The Zigbee RGBW strip |
 | `binary_sensor.led_controller_*_button` | The nine ESPHome buttons |
 
 The Home Assistant server node also needs pointing at your instance on first import.

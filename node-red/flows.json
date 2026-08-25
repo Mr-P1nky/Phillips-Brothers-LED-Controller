@@ -44,7 +44,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{}",
@@ -191,7 +191,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [],
@@ -221,7 +221,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"brightness_step_pct\": 10}",
@@ -324,7 +324,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [
@@ -361,7 +361,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"brightness_pct\": $number(payload)}",
@@ -464,7 +464,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [],
@@ -494,7 +494,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"effect\": \"colorloop\"}",
@@ -596,7 +596,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"effect\": previousEffect}",
@@ -676,7 +676,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"effect\": previousEffect}",
@@ -815,7 +815,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [],
@@ -932,7 +932,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [],
@@ -1049,7 +1049,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [],
@@ -1099,7 +1099,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"rgb_color\": payload}",
@@ -1220,7 +1220,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [],
@@ -1270,7 +1270,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"color_temp_kelvin\": $number(payload)}",
@@ -1391,7 +1391,7 @@
         "halt_if": "on",
         "halt_if_type": "str",
         "halt_if_compare": "is",
-        "entity_id": "light.underbed_led_strip",
+        "entity_id": "light.led_strip",
         "state_type": "str",
         "blockInputOverrides": false,
         "outputProperties": [],
@@ -1470,7 +1470,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"effect\": \"stop_colorloop\"}",
@@ -1529,7 +1529,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"hs_color\": [0, 100]}",
@@ -1679,7 +1679,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"effect\": \"stop_colorloop\"}",
@@ -1713,7 +1713,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"effect\": \"stop_colorloop\"}",
@@ -1797,7 +1797,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"hs_color\": [238, 100]}",
@@ -1831,7 +1831,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"hs_color\": [119, 100]}",
@@ -1865,7 +1865,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"hs_color\": [119, 100]}",
@@ -1899,7 +1899,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"hs_color\": [238, 100]}",
@@ -1933,7 +1933,7 @@
         "areaId": [],
         "deviceId": [],
         "entityId": [
-            "light.underbed_led_strip"
+            "light.led_strip"
         ],
         "labelId": [],
         "data": "{\"hs_color\": [0, 100]}",
