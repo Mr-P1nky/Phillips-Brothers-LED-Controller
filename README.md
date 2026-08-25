@@ -41,11 +41,25 @@ The ESP32-S3-Zero also acts as a Bluetooth proxy for Home Assistant, providing B
 - **Node-RED** — button logic and LED strip control via `light.turn_on` service calls
 - **Zigbee2MQTT** — Zigbee LED strip integration
 
-## Node-RED Notes
+## Node-RED
 
-- All colour buttons use `hs_color` (not `rgb_color`) for effect-to-colour transitions, bypassing HA's stale-state dedup issue with xy colour space.
-- Brightness buttons reapply active effects (colorloop) after adjustment via a flow variable tracking effect state, since the Zigbee strip doesn't report effect status back.
-- White cycle uses `color_temp_kelvin` (6500K / 3250K / 2000K) tracked via a flow index variable.
+All button logic lives in [`node-red/flows.json`](node-red/flows.json). Import it from the Node-RED menu (Import → select the file); it creates an "LED Controller" tab.
+
+**It will not work until you repoint the entity IDs to your own.** The flow ships with placeholders:
+
+| Placeholder | What it is |
+|-------------|------------|
+| `light.underbed_led_strip` | The Zigbee RGBW strip |
+| `binary_sensor.led_controller_*_button` | The nine ESPHome buttons |
+
+The Home Assistant server node also needs pointing at your instance on first import.
+
+### Notes
+
+- Colour buttons use `hs_color` rather than `rgb_color`, bypassing HA's stale-state dedup in xy colour space — pressing red twice would otherwise do nothing the second time. Random is the exception and sends `rgb_color`, but three fresh random bytes practically never collide with the current colour, so dedup never bites.
+- Brightness buttons reapply an active effect (colorloop) after adjustment, tracked in a `currentEffect` flow variable, since the Zigbee strip doesn't report effect status back.
+- Bright up uses `brightness_step_pct`, which is atomic and capped at 100 by HA. Bright down instead reads current brightness and sets `brightness_pct`, because a negative step would walk to 0 and switch the strip off — it needs the 10% floor.
+- White cycle steps `color_temp_kelvin` through 6500K / 3250K / 2000K via a flow index variable.
 
 ## ESPHome Setup
 

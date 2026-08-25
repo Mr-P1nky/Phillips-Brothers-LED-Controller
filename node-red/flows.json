@@ -1,0 +1,1971 @@
+[
+    {
+        "id": "power-toggle-tab",
+        "type": "tab",
+        "label": "LED Controller",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "power-btn-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (state = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "power-toggle-call"
+            ]
+        ]
+    },
+    {
+        "id": "power-toggle-call",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.toggle - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.toggle",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "toggle",
+        "mergecontext": "",
+        "x": 1280,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "power-btn-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Power button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_power_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "power-btn-filter"
+            ]
+        ]
+    },
+    {
+        "id": "bright-up-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Bright up button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_bright_up_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "bright-up-filter"
+            ]
+        ]
+    },
+    {
+        "id": "bright-up-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "bright-up-guard"
+            ]
+        ]
+    },
+    {
+        "id": "bright-up-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 700,
+        "y": 220,
+        "wires": [
+            [
+                "62ad39645d80e3e1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bright-up-call",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on +10% - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"brightness_step_pct\": 10}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1270,
+        "y": 220,
+        "wires": [
+            [
+                "3a4e663495817b4c"
+            ]
+        ]
+    },
+    {
+        "id": "bright-down-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Bright down button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_bright_down_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "bright-down-filter"
+            ]
+        ]
+    },
+    {
+        "id": "bright-down-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "bright-down-guard"
+            ]
+        ]
+    },
+    {
+        "id": "bright-down-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "strip_entity",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 700,
+        "y": 300,
+        "wires": [
+            [
+                "864f0e053670c136"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "bright-down-call",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on set brightness_pct floor 10% - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"brightness_pct\": $number(payload)}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1340,
+        "y": 300,
+        "wires": [
+            [
+                "02b8e09f621b1324"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Rainbow button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_rainbow_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "rainbow-filter"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 400,
+        "wires": [
+            [
+                "rainbow-guard"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "rainbow-call"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "rainbow-call",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on effect colorloop - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"effect\": \"colorloop\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1300,
+        "y": 400,
+        "wires": [
+            [
+                "rainbow-set-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "62ad39645d80e3e1",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Read currentEffect flag",
+        "func": "const trackedEffect = flow.get('currentEffect');\nmsg.effectWasActive = !!trackedEffect;\nmsg.previousEffect = trackedEffect;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 220,
+        "wires": [
+            [
+                "bright-up-call"
+            ]
+        ]
+    },
+    {
+        "id": "3a4e663495817b4c",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Was an effect running?",
+        "property": "effectWasActive",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1660,
+        "y": 220,
+        "wires": [
+            [
+                "43b794d0fa733e41"
+            ]
+        ]
+    },
+    {
+        "id": "43b794d0fa733e41",
+        "type": "delay",
+        "z": "power-toggle-tab",
+        "name": "Wait 200ms",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1850,
+        "y": 220,
+        "wires": [
+            [
+                "8d06da4fa402ceb1"
+            ]
+        ]
+    },
+    {
+        "id": "8d06da4fa402ceb1",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on reapply effect - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"effect\": previousEffect}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 2100,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02b8e09f621b1324",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Was an effect running?",
+        "property": "effectWasActive",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1660,
+        "y": 300,
+        "wires": [
+            [
+                "d2c8d5de36cbc914"
+            ]
+        ]
+    },
+    {
+        "id": "d2c8d5de36cbc914",
+        "type": "delay",
+        "z": "power-toggle-tab",
+        "name": "Wait 200ms",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1850,
+        "y": 300,
+        "wires": [
+            [
+                "f29296dd10b77418"
+            ]
+        ]
+    },
+    {
+        "id": "f29296dd10b77418",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on reapply effect - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"effect\": previousEffect}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 2100,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "864f0e053670c136",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Calc -10%, floor 10, flag effect",
+        "func": "const attrs = (msg.strip_entity && msg.strip_entity.attributes) || {};\nconst rawBrightness = attrs.brightness || 0;\nconst currentPct = Math.round(rawBrightness / 255 * 100);\nlet newPct = currentPct - 10;\nif (newPct < 10) {\n    newPct = 10;\n}\nmsg.payload = newPct;\nconst trackedEffect = flow.get('currentEffect');\nmsg.effectWasActive = !!trackedEffect;\nmsg.previousEffect = trackedEffect;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 300,
+        "wires": [
+            [
+                "bright-down-call"
+            ]
+        ]
+    },
+    {
+        "id": "rainbow-set-flowvar",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Set currentEffect = colorloop",
+        "func": "flow.set('currentEffect', 'colorloop');\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2260,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "blue-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Blue button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_blue_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 150,
+        "y": 1000,
+        "wires": [
+            [
+                "blue-filter"
+            ]
+        ]
+    },
+    {
+        "id": "blue-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 440,
+        "y": 1000,
+        "wires": [
+            [
+                "blue-guard"
+            ]
+        ]
+    },
+    {
+        "id": "blue-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 680,
+        "y": 1000,
+        "wires": [
+            [
+                "3e0532374ef42991"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "blue-clear-flowvar",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Set currentEffect = null",
+        "func": "flow.set('currentEffect', null);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2240,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "green-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Green button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_green_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 140,
+        "y": 1300,
+        "wires": [
+            [
+                "green-filter"
+            ]
+        ]
+    },
+    {
+        "id": "green-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 420,
+        "y": 1300,
+        "wires": [
+            [
+                "green-guard"
+            ]
+        ]
+    },
+    {
+        "id": "green-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 660,
+        "y": 1300,
+        "wires": [
+            [
+                "cd3ebac361f86b29"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "green-clear-flowvar",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Set currentEffect = null",
+        "func": "flow.set('currentEffect', null);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2200,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "random-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Random button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_random_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "random-filter"
+            ]
+        ]
+    },
+    {
+        "id": "random-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "random-guard"
+            ]
+        ]
+    },
+    {
+        "id": "random-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 700,
+        "y": 480,
+        "wires": [
+            [
+                "random-gen"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "random-gen",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Generate random RGB",
+        "func": "function randByte() {\n    return Math.floor(Math.random() * 256);\n}\nmsg.payload = [randByte(), randByte(), randByte()];\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 480,
+        "wires": [
+            [
+                "random-call"
+            ]
+        ]
+    },
+    {
+        "id": "random-call",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on rgb random - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"rgb_color\": payload}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1290,
+        "y": 480,
+        "wires": [
+            [
+                "random-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "random-clear-flowvar",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Set currentEffect = null",
+        "func": "flow.set('currentEffect', null);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2240,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "whitecycle-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "White cycle button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_white_cycle_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 190,
+        "y": 560,
+        "wires": [
+            [
+                "whitecycle-filter"
+            ]
+        ]
+    },
+    {
+        "id": "whitecycle-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 560,
+        "wires": [
+            [
+                "whitecycle-guard"
+            ]
+        ]
+    },
+    {
+        "id": "whitecycle-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 700,
+        "y": 560,
+        "wires": [
+            [
+                "whitecycle-calc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "whitecycle-calc",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Cycle cool / 50-50 / warm",
+        "func": "// Kelvin scale: lower = warmer, higher = cooler\n// adjust these 3 values to match your strip's actual min/max kelvin if different\n const steps = [6500, 3250, 2000]; // cool, 50/50, warm\n const labels = ['cool', '50/50', 'warm'];\n \nlet idx = flow.get('whiteCycleIndex');\nif (typeof idx !== 'number' || idx < 0 || idx > 2) {\n    idx = 0;\n} else {\n    idx = (idx + 1) % 3;\n}\nflow.set('whiteCycleIndex', idx);\n\nmsg.payload = steps[idx];\nmsg.whiteStepLabel = labels[idx];\nreturn msg; ",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 560,
+        "wires": [
+            [
+                "whitecycle-call"
+            ]
+        ]
+    },
+    {
+        "id": "whitecycle-call",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on color_temp - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"color_temp_kelvin\": $number(payload)}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1290,
+        "y": 560,
+        "wires": [
+            [
+                "whitecycle-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "whitecycle-clear-flowvar",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Set currentEffect = null",
+        "func": "flow.set('currentEffect', null);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2240,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "red-trigger",
+        "type": "server-state-changed",
+        "z": "power-toggle-tab",
+        "name": "Red button pressed",
+        "server": "50cb1962.3d6bd",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.led_controller_red_button"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "string",
+                "valueType": "entityState"
+            }
+        ],
+        "exposeToHomeAssistant": false,
+        "haConfig": [],
+        "x": 170,
+        "y": 660,
+        "wires": [
+            [
+                "red-filter"
+            ]
+        ]
+    },
+    {
+        "id": "red-filter",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Only on press (payload = on)",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 460,
+        "y": 660,
+        "wires": [
+            [
+                "red-guard"
+            ]
+        ]
+    },
+    {
+        "id": "red-guard",
+        "type": "api-current-state",
+        "z": "power-toggle-tab",
+        "name": "Only if strip is on",
+        "server": "50cb1962.3d6bd",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "light.underbed_led_strip",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "x": 700,
+        "y": 660,
+        "wires": [
+            [
+                "red-effect-flag"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "red-effect-flag",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Read currentEffect flag",
+        "func": "msg.currentEffectFlag = !!flow.get('currentEffect');\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 660,
+        "wires": [
+            [
+                "red-effect-switch"
+            ]
+        ]
+    },
+    {
+        "id": "red-effect-switch",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Was effect running?",
+        "property": "currentEffectFlag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1160,
+        "y": 660,
+        "wires": [
+            [
+                "red-turnoff"
+            ],
+            [
+                "red-turnon-direct"
+            ]
+        ]
+    },
+    {
+        "id": "red-turnoff",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light cancel effect",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"effect\": \"stop_colorloop\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1430,
+        "y": 620,
+        "wires": [
+            [
+                "red-delay"
+            ]
+        ]
+    },
+    {
+        "id": "red-delay",
+        "type": "delay",
+        "z": "power-toggle-tab",
+        "name": "Wait 100ms",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1670,
+        "y": 620,
+        "wires": [
+            [
+                "red-turnon-after-off"
+            ]
+        ]
+    },
+    {
+        "id": "red-turnon-direct",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on red - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"hs_color\": [0, 100]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1460,
+        "y": 700,
+        "wires": [
+            [
+                "red-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "red-clear-flowvar",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Set currentEffect = null",
+        "func": "flow.set('currentEffect', null);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2240,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e0532374ef42991",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Read currentEffect flag",
+        "func": "msg.currentEffectFlag = !!flow.get('currentEffect');\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1000,
+        "wires": [
+            [
+                "599e1f17205f0a7c"
+            ]
+        ]
+    },
+    {
+        "id": "cd3ebac361f86b29",
+        "type": "function",
+        "z": "power-toggle-tab",
+        "name": "Read currentEffect flag",
+        "func": "msg.currentEffectFlag = !!flow.get('currentEffect');\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 1300,
+        "wires": [
+            [
+                "c0a1c172938ab8f6"
+            ]
+        ]
+    },
+    {
+        "id": "599e1f17205f0a7c",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Was effect running?",
+        "property": "currentEffectFlag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1140,
+        "y": 1000,
+        "wires": [
+            [
+                "2251da4e998a5320"
+            ],
+            [
+                "582736ad265aee79"
+            ]
+        ]
+    },
+    {
+        "id": "c0a1c172938ab8f6",
+        "type": "switch",
+        "z": "power-toggle-tab",
+        "name": "Was effect running?",
+        "property": "currentEffectFlag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1120,
+        "y": 1300,
+        "wires": [
+            [
+                "5a7b59cf2f889264"
+            ],
+            [
+                "e5f5eb618bbde808"
+            ]
+        ]
+    },
+    {
+        "id": "2251da4e998a5320",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light cancel effect",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"effect\": \"stop_colorloop\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1410,
+        "y": 960,
+        "wires": [
+            [
+                "492f59321533a1f5"
+            ]
+        ]
+    },
+    {
+        "id": "5a7b59cf2f889264",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light cancel effect",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"effect\": \"stop_colorloop\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1390,
+        "y": 1260,
+        "wires": [
+            [
+                "7f50eda3cac98bc5"
+            ]
+        ]
+    },
+    {
+        "id": "492f59321533a1f5",
+        "type": "delay",
+        "z": "power-toggle-tab",
+        "name": "Wait 100ms",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1670,
+        "y": 960,
+        "wires": [
+            [
+                "38ef2cae88f0651b"
+            ]
+        ]
+    },
+    {
+        "id": "7f50eda3cac98bc5",
+        "type": "delay",
+        "z": "power-toggle-tab",
+        "name": "Wait 100ms",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1630,
+        "y": 1260,
+        "wires": [
+            [
+                "fc7a1d37b4153ebd"
+            ]
+        ]
+    },
+    {
+        "id": "582736ad265aee79",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on blue - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"hs_color\": [238, 100]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1450,
+        "y": 1040,
+        "wires": [
+            [
+                "blue-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "e5f5eb618bbde808",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on green - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"hs_color\": [119, 100]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1430,
+        "y": 1340,
+        "wires": [
+            [
+                "green-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "fc7a1d37b4153ebd",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on green - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"hs_color\": [119, 100]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1870,
+        "y": 1260,
+        "wires": [
+            [
+                "green-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "38ef2cae88f0651b",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on blue - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"hs_color\": [238, 100]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1910,
+        "y": 960,
+        "wires": [
+            [
+                "blue-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "red-turnon-after-off",
+        "type": "api-call-service",
+        "z": "power-toggle-tab",
+        "name": "light.turn_on red - LED strip",
+        "server": "50cb1962.3d6bd",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.underbed_led_strip"
+        ],
+        "labelId": [],
+        "data": "{\"hs_color\": [0, 100]}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "light",
+        "service": "turn_on",
+        "mergecontext": "",
+        "x": 1900,
+        "y": 620,
+        "wires": [
+            [
+                "red-clear-flowvar"
+            ]
+        ]
+    },
+    {
+        "id": "50cb1962.3d6bd",
+        "type": "server",
+        "name": "Home Assistant",
+        "addon": true
+    },
+    {
+        "id": "637f39bb231dd7a0",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-home-assistant-websocket": "0.80.3"
+        }
+    }
+]
