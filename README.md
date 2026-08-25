@@ -74,7 +74,7 @@ ap_password: "fallback_hotspot_password"
 ```
 cad/
 ├── full-assy/    # Full assembly STEP (PCB + enclosure) — coming soon
-└── pcb/          # PCB STEP export — coming soon
+└── pcb/          # PCB STEP export
 ```
 
 ## PCB
