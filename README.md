@@ -83,9 +83,14 @@ Designed in KiCad. Gerbers in [`gerber/`](gerber/). Manufactured at 100x82mm, 1.
 
 ## Licence
 
-This project is dual-licensed, because MIT does not properly address hardware:
+Fully reciprocal — anyone who distributes a modified version, or manufactures and sells a modified board, must publish their changes under the same terms.
 
-- **Firmware** (`yaml/`) — [MIT](LICENSE)
-- **Hardware** (`gerber/`, `cad/`) — [CERN-OHL-P v2](LICENSE-HARDWARE), the permissive open hardware licence
+- **Firmware** (`yaml/`) — [GPL-3.0-or-later](LICENSE)
+- **Hardware** (`gerber/`, `cad/`) — [CERN-OHL-S v2](LICENSE-HARDWARE)
 
-Copyright (c) 2026 Phillips Brothers
+Two licences because GPL covers software and CERN-OHL-S is its hardware equivalent; neither one properly covers the other kind of work.
+
+```
+Copyright (c) 2026 Mr-P1nky
+This source describes Open Hardware and is licensed under the CERN-OHL-S v2.
+```

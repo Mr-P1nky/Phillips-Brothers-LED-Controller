@@ -1,6 +1,8 @@
 # Phillips Brothers LED Controller v1.1
 # ESP32-S3-Zero based LED strip controller for Home Assistant
 # 9 button inputs via ESPHome
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (c) 2026 Mr-P1nky
 substitutions:
   device_name: led-controller
   friendly_name: "LED Controller"
